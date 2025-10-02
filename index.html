@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uttarakhand - Dev Bhoomi | The Land of Gods</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .hero-bg {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('https://www.peakadventuretour.com/assets/imgs/uttarakhand-tourism-01.webp');
+            background-size: cover;
+            background-position: center;
+        }
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+            font-family: 'Playfair Display', serif;
+        }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: #10b981;
+            bottom: -10px;
+            left: 25%;
+        }
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .region-card {
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+        .region-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 1.5rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        .region-card:hover .region-overlay {
+            transform: translateY(0);
+        }
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #10b981;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid #10b981;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .left {
+            left: 0;
+        }
+        .right {
+            left: 50%;
+        }
+        .left::after {
+            right: -13px;
+        }
+        .right::after {
+            left: -13px;
+        }
+        .content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            .timeline-item::after {
+                left: 21px;
+            }
+            .right {
+                left: 0%;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-white font-bold mr-2">U</div>
+                <h1 class="text-xl font-bold text-gray-800">Uttarakhand - Dev Bhoomi</h1>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="text-gray-700 hover:text-green-600 font-medium">Home</a>
+                <a href="#devbhoomi" class="text-gray-700 hover:text-green-600 font-medium">Dev Bhoomi</a>
+                <a href="#dhams" class="text-gray-700 hover:text-green-600 font-medium">Char Dham</a>
+                <a href="#attractions" class="text-gray-700 hover:text-green-600 font-medium">Attractions</a>
+                <a href="#regions" class="text-gray-700 hover:text-green-600 font-medium">Regions</a>
+                <a href="#history" class="text-gray-700 hover:text-green-600 font-medium">History</a>
+                <a href="#connect" class="text-gray-700 hover:text-green-600 font-medium">Connect</a>
+            </nav>
+            <div class="md:hidden">
+                <button id="menu-toggle" class="text-gray-700 focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white py-4 px-4 shadow-lg">
+            <a href="#home" class="block py-2 text-gray-700 hover:text-green-600">Home</a>
+            <a href="#devbhoomi" class="block py-2 text-gray-700 hover:text-green-600">Dev Bhoomi</a>
+            <a href="#dhams" class="block py-2 text-gray-700 hover:text-green-600">Char Dham</a>
+            <a href="#attractions" class="block py-2 text-gray-700 hover:text-green-600">Attractions</a>
+            <a href="#regions" class="block py-2 text-gray-700 hover:text-green-600">Regions</a>
+            <a href="#history" class="block py-2 text-gray-700 hover:text-green-600">History</a>
+            <a href="#connect" class="block py-2 text-gray-700 hover:text-green-600">Connect</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg text-white py-24 md:py-32">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4 font-serif">Uttarakhand - Dev Bhoomi</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">The Land of Gods, where spirituality meets nature's grandeur</p>
+            <a href="#devbhoomi" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full inline-block transition duration-300">Discover Dev Bhoomi</a>
+        </div>
+    </section>
+
+    <!-- Dev Bhoomi Story Section -->
+    <section id="devbhoomi" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center text-gray-800 section-title">Why Uttarakhand is Called Dev Bhoomi</h2>
+            
+            <div class="max-w-4xl mx-auto bg-gradient-to-r from-green-50 to-blue-50 rounded-xl shadow-lg overflow-hidden my-8">
+                <div class="md:flex">
+                    <div class="md:w-2/3 p-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">The Land Where Gods Descended</h3>
+                        <p class="text-gray-700 mb-4">Uttarakhand is reverently called <span class="font-semibold text-green-700">Dev Bhoomi</span> (Land of the Gods) because according to Hindu mythology, this is where the gods descended to Earth and where many significant events from the scriptures took place.</p>
+                        
+                        <h4 class="text-xl font-bold text-gray-800 mt-6 mb-3">The Legend of Brahma's Creation</h4>
+                        <p class="text-gray-700 mb-4">According to the Skanda Purana, Lord Brahma performed a great yajna (sacrificial ritual) in Uttarakhand to purify the land after the great flood. Pleased with his devotion, Lord Vishnu appeared and blessed the region, declaring it would forever be a sacred land where gods would reside.</p>
+                        
+                        <h4 class="text-xl font-bold text-gray-800 mt-6 mb-3">The Descent of Ganga</h4>
+                        <p class="text-gray-700 mb-4">The most famous legend associated with Uttarakhand is the descent of River Ganga. According to the story, King Bhagirath performed intense penance to bring the celestial Ganga to Earth to purify the souls of his ancestors. Lord Shiva agreed to break Ganga's fall by catching her in his matted locks, preventing the Earth from being destroyed by her force.</p>
+                        
+                        <p class="text-gray-700">This is why Gangotri, where Ganga first touched Earth, and the surrounding regions are considered exceptionally sacred. The presence of Char Dham, numerous ancient temples, and the belief that the Himalayas are the abode of gods further cement Uttarakhand's status as Dev Bhoomi.</p>
+                    </div>
+                    <div class="md:w-1/3 h-64 md:h-auto bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1587135991058-8816d6d6d988?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Char Dham Section -->
+    <section id="dhams" class="py-16 bg-green-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-800 section-title">Char Dham of Uttarakhand</h2>
+            <p class="text-gray-600 text-center max-w-3xl mx-auto mb-12">The four sacred pilgrimage sites in the Himalayas that hold immense spiritual significance for Hindus.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Yamunotri -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg card-hover">
+                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://uttarakhandtourism.gov.in/assets/media/UTDB_media_logo1746694873Untitled-design-53.jpg');"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Yamunotri</h3>
+                        <p class="text-gray-600 mb-4">The source of the Yamuna River and the seat of the goddess Yamuna, daughter of Surya (Sun God).</p>
+                        <div class="flex items-center text-green-600 mb-3">
+                            <i class="fas fa-mountain mr-2"></i>
+                            <span>3,293 meters</span>
+                        </div>
+                        <details class="mt-2">
+                            <summary class="cursor-pointer font-medium text-green-700">History & Significance</summary>
+                            <p class="text-gray-600 mt-2 text-sm">According to legend, Yamuna was the daughter of Surya and sister of Yama, the god of death. Bathing in her waters is believed to protect from untimely death. The temple was built by Maharani Gularia of Jaipur in the 19th century.</p>
+                        </details>
+                    </div>
+                </div>
+                
+                <!-- Gangotri -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg card-hover">
+                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://www.pilgrimagetour.in/blog/wp-content/uploads/2023/09/Best-Time-to-Visit-Gangotri.jpg');"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Gangotri</h3>
+                        <p class="text-gray-600 mb-4">The origin of the Ganges River, where Goddess Ganga descended from heaven to Earth.</p>
+                        <div class="flex items-center text-green-600 mb-3">
+                            <i class="fas fa-water mr-2"></i>
+                            <span>3,100 meters</span>
+                        </div>
+                        <details class="mt-2">
+                            <summary class="cursor-pointer font-medium text-green-700">History & Significance</summary>
+                            <p class="text-gray-600 mt-2 text-sm">According to mythology, King Bhagirath performed penance here to bring Ganga to Earth to purify his ancestors' souls. The temple was built by a Gorkha commander, Amar Singh Thapa, in the 18th century. The actual source is at Gaumukh, 19 km away.</p>
+                        </details>
+                    </div>
+                </div>
+                
+                <!-- Kedarnath -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg card-hover">
+                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://uttarakhandtriptrek.com/wp-content/uploads/2023/11/Snapinsta.app_293175459_581754693537885_5742373109704896684_n_1024.jpg');"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Kedarnath</h3>
+                        <p class="text-gray-600 mb-4">One of the twelve Jyotirlingas, dedicated to Lord Shiva, and the highest among the Char Dham.</p>
+                        <div class="flex items-center text-green-600 mb-3">
+                            <i class="fas fa-praying-hands mr-2"></i>
+                            <span>3,583 meters</span>
+                        </div>
+                        <details class="mt-2">
+                            <summary class="cursor-pointer font-medium text-green-700">History & Significance</summary>
+                            <p class="text-gray-600 mt-2 text-sm">According to legend, after the Mahabharata war, the Pandavas sought Lord Shiva's blessings to atone for their sins. Shiva eluded them and took refuge at Kedarnath as a bull. The temple is believed to have been built by the Pandavas and revived by Adi Shankaracharya.</p>
+                        </details>
+                    </div>
+                </div>
+                
+                <!-- Badrinath -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg card-hover">
+                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://badrinath-kedarnath.gov.in/css_js_2024/img/badrinath-temple_1.jpg');"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Badrinath</h3>
+                        <p class="text-gray-600 mb-4">Dedicated to Lord Vishnu, this temple is part of both Char Dham and Chota Char Dham.</p>
+                        <div class="flex items-center text-green-600 mb-3">
+                            <i class="fas fa-om mr-2"></i>
+                            <span>3,133 meters</span>
+                        </div>
+                        <details class="mt-2">
+                            <summary class="cursor-pointer font-medium text-green-700">History & Significance</summary>
+                            <p class="text-gray-600 mt-2 text-sm">According to legend, Lord Vishnu meditated here under a Badri tree. The temple was established by Adi Shankaracharya in the 8th century. It's one of the 108 Divya Desams - holy shrines for Vaishnavites. The idol is believed to be self-manifested.</p>
+                        </details>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Ganga Descent Story -->
+            <div class="mt-12 bg-white rounded-xl shadow-lg overflow-hidden max-w-4xl mx-auto">
+                <div class="md:flex">
+                    <div class="md:w-1/2 p-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">The Descent of Ganga: From Vishnu's Feet to Shiva's Locks</h3>
+                        <p class="text-gray-700 mb-4">According to Hindu scriptures, the sacred River Ganga originally flowed in heaven. King Bhagirath performed intense penance to bring her to Earth to purify the souls of his ancestors.</p>
+                        <p class="text-gray-700 mb-4">Lord Brahma instructed that only Lord Shiva could break Ganga's mighty fall. Shiva agreed and captured Ganga in his matted locks, releasing her gently to Earth in seven streams.</p>
+                        <p class="text-gray-700">The foremost stream became the Bhagirathi River which flows from Gangotri. This is why Shiva is also called Gangadhara - the bearer of Ganga.</p>
+                    </div>
+                    <div class="md:w-1/2 h-64 md:h-auto bg-cover bg-center" style="background-image: url('https://ramanisblog.in/wp-content/uploads/2014/08/78959-pbaaea106_vaman_avatar_lord_vishnu_trivikrama.jpg');"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Attractions Section -->
+    <section id="attractions" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-800 section-title">Popular Attractions</h2>
+            <p class="text-gray-600 text-center max-w-3xl mx-auto mb-12">Beyond the Char Dham, Uttarakhand offers numerous breathtaking destinations.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Hemkund Sahib -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg card-hover">
+                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Hemkunt-003.jpg/1200px-Hemkunt-003.jpg');"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Hemkund Sahib</h3>
+                        <p class="text-gray-600 mb-4">A Sikh gurudwara situated at an altitude of 4,632 meters, surrounded by seven mountain peaks and a glacial lake.</p>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-green-600 font-medium">Sikh Pilgrimage</span>
+                            <span class="text-gray-500">4,632m</span>
+                        </div>
+                        <details class="mt-2">
+                            <summary class="cursor-pointer font-medium text-green-700">More Information</summary>
+                            <p class="text-gray-600 mt-2 text-sm">According to Sikh tradition, Guru Gobind Singh, the tenth Sikh Guru, meditated here in his previous life. The gurudwara was built in the 20th century after being mentioned in the Guru's writings. The pristine lake beside it is considered sacred.</p>
+                        </details>
+                    </div>
+                </div>
+                
+                <!-- Lansdowne Church -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg card-hover">
+                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://www.chardhamtours.in/gallery/cityImage/1462944163_st%20jhone.jpg');"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">St. John's Church, Lansdowne</h3>
+                        <p class="text-gray-600 mb-4">A beautiful colonial-era church in the peaceful hill station of Lansdowne, built in 1936.</p>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-green-600 font-medium">Historical Site</span>
+                            <span class="text-gray-500">1,700m</span>
+                        </div>
+                        <details class="mt-2">
+                            <summary class="cursor-pointer font-medium text-green-700">More Information</summary>
+                            <p class="text-gray-600 mt-2 text-sm">Lansdowne was a major garrison town for the Garhwal Rifles. The church was built during British rule and features beautiful stained glass windows. It remains an active place of worship and a reminder of Uttarakhand's colonial history.</p>
+                        </details>
+                    </div>
+                </div>
+                
+                <!-- FRI Dehradun -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg card-hover">
+                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://www.naturesafariindia.com/wp-content/uploads/2025/04/forest-research-institute-of-India-930x620.jpg');"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Forest Research Institute (FRI)</h3>
+                        <p class="text-gray-600 mb-4">A premier institution with magnificent colonial architecture, spread over 450 hectares.</p>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-green-600 font-medium">Educational & Heritage</span>
+                            <span class="text-gray-500">Dehradun</span>
+                        </div>
+                        <details class="mt-2">
+                            <summary class="cursor-pointer font-medium text-green-700">More Information</summary>
+                            <p class="text-gray-600 mt-2 text-sm">Established in 1906 as Imperial Forest Research Institute, FRI is a UNESCO World Heritage Site candidate. Its Greco-Roman architecture is spread across a 450-hectare campus. It has six museums and contains rare botanical specimens.</p>
+                        </details>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Additional Attractions -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                <!-- IMA Dehradun -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg card-hover">
+                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://english.cdn.zeenews.com/sites/default/files/2020/06/13/866524-pop.gif');"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Indian Military Academy (IMA), Dehradun</h3>
+                        <p class="text-gray-600 mb-4">The premier officer training academy of the Indian Army, established in 1932.</p>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-green-600 font-medium">Military Academy</span>
+                            <span class="text-gray-500">Dehradun</span>
+                        </div>
+                        <details class="mt-2">
+                            <summary class="cursor-pointer font-medium text-green-700">More Information</summary>
+                            <p class="text-gray-600 mt-2 text-sm">IMA was established in 1932 following a recommendation by the Indian Military College Committee. The academy trains officers for the Indian Army and has produced many war heroes. The Chetwode Building is its centerpiece, with the famous Chetwode Hall where the passing out parade takes place.</p>
+                        </details>
+                    </div>
+                </div>
+                
+                <!-- Shankaracharya Samadhi -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg card-hover">
+                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRWyrfZ2xP-ATZAE2gjV6TSQl1UGHQt7vtLw&s');"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Shankaracharya Samadhi, Kedarnath</h3>
+                        <p class="text-gray-600 mb-4">The final resting place of Adi Shankaracharya, the great Hindu philosopher who revived Hinduism.</p>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-green-600 font-medium">Spiritual Site</span>
+                            <span class="text-gray-500">Kedarnath</span>
+                        </div>
+                        <details class="mt-2">
+                            <summary class="cursor-pointer font-medium text-green-700">More Information</summary>
+                            <p class="text-gray-600 mt-2 text-sm">Adi Shankaracharya is believed to have attained Mahasamadhi (conscious exit from the body) at Kedarnath at the young age of 32. He established the four Mathas (monasteries) in four corners of India and revived the Char Dham pilgrimage. His samadhi is located behind the Kedarnath temple.</p>
+                        </details>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Queen Teelu Rauteli -->
+            <div class="mt-12 bg-white rounded-lg overflow-hidden shadow-lg max-w-4xl mx-auto card-hover">
+                <div class="md:flex">
+                    <div class="md:w-1/2 h-64 md:h-auto bg-cover bg-center" style="background-image: url('https://umjb.in/admin/uploads/gyankosh/370c971f53c162d1f9611ec6961bb962.jpg');"></div>
+                    <div class="md:w-1/2 p-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Queen Teelu Rauteli - The Warrior Queen</h3>
+                        <p class="text-gray-600 mb-4">A legendary folk heroine of Uttarakhand known for her bravery and wisdom during the 16th century.</p>
+                        <p class="text-gray-600 mb-4">She was the daughter of King Bhanu Pratap of Gangoli and married to King Dularam Singh of Mankot. When her husband was killed in battle, she took charge and defended her kingdom against invaders.</p>
+                        <p class="text-gray-600">Her tales are an integral part of Kumaoni folklore, inspiring generations with her strategic mind and fearless nature. Folk songs celebrating her bravery are still sung in the region.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Regions Section -->
+    <section id="regions" class="py-16 bg-green-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-800 section-title">Regions of Uttarakhand</h2>
+            <p class="text-gray-600 text-center max-w-3xl mx-auto mb-12">Uttarakhand is divided into two main cultural regions, each with its unique traditions and landscapes.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Garhwal -->
+                <div class="region-card rounded-lg overflow-hidden shadow-lg" style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+                    <div class="region-overlay">
+                        <h3 class="text-2xl font-bold mb-2">Garhwal Region</h3>
+                        <p class="mb-2">The western part of Uttarakhand, known for its majestic mountains, holy rivers, and spiritual significance.</p>
+                        <ul class="list-disc list-inside">
+                            <li>Home to Char Dham pilgrimage sites</li>
+                            <li>Famous hill stations: Mussoorie, Dhanaulti</li>
+                            <li>Adventure sports: Trekking, skiing, river rafting</li>
+                            <li>Major cities: Dehradun, Haridwar, Rishikesh</li>
+                            <li>Districts: Chamoli, Dehradun, Haridwar, Pauri, Rudraprayag, Tehri, Uttarkashi</li>
+                        </ul>
+                    </div>
+                    <div class="absolute top-0 left-0 p-6">
+                        <h3 class="text-2xl font-bold text-white">Garhwal</h3>
+                    </div>
+                </div>
+                
+                <!-- Kumaon -->
+                <div class="region-card rounded-lg overflow-hidden shadow-lg" style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+                    <div class="region-overlay">
+                        <h3 class="text-2xl font-bold mb-2">Kumaon Region</h3>
+                        <p class="mb-2">The eastern part of Uttarakhand, famous for its scenic beauty, lakes, and rich cultural heritage.</p>
+                        <ul class="list-disc list-inside">
+                            <li>Famous for Nainital, Almora, Ranikhet</li>
+                            <li>Beautiful lakes: Naini, Bhimtal, Sattal</li>
+                            <li>Jim Corbett National Park - India's first national park</li>
+                            <li>Unique Kumaoni cuisine and festivals</li>
+                            <li>Districts: Almora, Bageshwar, Champawat, Nainital, Pithoragarh, Udham Singh Nagar</li>
+                        </ul>
+                    </div>
+                    <div class="absolute top-0 left-0 p-6">
+                        <h3 class="text-2xl font-bold text-white">Kumaon</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- History Section -->
+    <section id="history" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-800 section-title">History of Uttarakhand</h2>
+            
+            <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden mb-12">
+                <div class="md:flex">
+                    <div class="md:w-1/2 p-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Formation of Uttarakhand</h3>
+                        <p class="text-gray-600 mb-4">Uttarakhand, formerly known as Uttaranchal, was carved out of Uttar Pradesh on November 9, 2000, becoming the 27th state of India.</p>
+                        <p class="text-gray-600 mb-4">The statehood movement gained momentum in the 1990s, driven by regional disparities and the need for better development in the hilly regions. The movement was largely peaceful but saw some violent incidents, most notably the Rampur Tiraha firing case in 1994.</p>
+                        <p class="text-gray-600">The name was changed from Uttaranchal to Uttarakhand in 2007, reflecting the aspirations of the people and the historical and cultural significance of the region. "Uttarakhand" means "Northern Land" in Sanskrit.</p>
+                    </div>
+                    <div class="md:w-1/2 h-64 md:h-auto bg-cover bg-center" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/a/ab/Uttarakhand_Divisions_Map.png');"></div>
+                </div>
+                
+                <div class="bg-green-50 p-6 border-t border-green-100">
+                    <h4 class="text-lg font-bold text-gray-800 mb-2">Key Facts:</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="text-center">
+                            <div class="text-green-600 font-bold text-2xl">9th Nov 2000</div>
+                            <div class="text-gray-600">State Formation Day</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-green-600 font-bold text-2xl">13 Districts</div>
+                            <div class="text-gray-600">7 in Garhwal, 6 in Kumaon</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-green-600 font-bold text-2xl">Dehradun</div>
+                            <div class="text-gray-600">Interim Capital</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Historical Timeline -->
+            <h3 class="text-2xl font-bold text-center text-gray-800 mb-8">Historical Timeline of Uttarakhand</h3>
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="content">
+                        <h4 class="font-bold text-gray-800">Ancient Period</h4>
+                        <p class="text-gray-600">The region was part of the ancient Kedar Khand and mentioned in Hindu scriptures as Dev Bhoomi. It was ruled by the Kuninda Kingdom in the 2nd century BCE.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="content">
+                        <h4 class="font-bold text-gray-800">Medieval Period</h4>
+                        <p class="text-gray-600">The region was divided into the Garhwal Kingdom and Kumaon Kingdom. Both kingdoms had their own distinct cultures and rulers.</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="content">
+                        <h4 class="font-bold text-gray-800">1815-1947</h4>
+                        <p class="text-gray-600">After the Anglo-Nepalese War, most of modern Uttarakhand became part of British India. The region was administered as part of the United Provinces.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="content">
+                        <h4 class="font-bold text-gray-800">Post-Independence</h4>
+                        <p class="text-gray-600">After India's independence in 1947, the region became part of the state of Uttar Pradesh.</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="content">
+                        <h4 class="font-bold text-gray-800">1994-2000</h4>
+                        <p class="text-gray-600">The Uttarakhand movement gained momentum, demanding separate statehood for the hill regions of Uttar Pradesh.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="content">
+                        <h4 class="font-bold text-gray-800">9 November 2000</h4>
+                        <p class="text-gray-600">Uttarakhand was officially formed as the 27th state of India, initially named Uttaranchal.</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="content">
+                        <h4 class="font-bold text-gray-800">2007</h4>
+                        <p class="text-gray-600">The state was renamed Uttarakhand, reflecting its historical and cultural identity.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Connect Section -->
+    <section id="connect" class="py-16 bg-gray-800 text-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center section-title">Connect With Uttarakhand</h2>
+            <p class="text-gray-300 text-center max-w-3xl mx-auto mb-12">Stay updated with the latest news, events, and beautiful visuals from Dev Bhoomi.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Instagram Section -->
+                <div class="bg-gray-700 rounded-xl p-8 text-center">
+                    <i class="fab fa-instagram text-4xl text-pink-500 mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-4">Follow on Instagram</h3>
+                    <p class="text-gray-300 mb-6">Discover stunning visuals of Uttarakhand's landscapes, culture, and festivals.</p>
+                    <a href="https://www.instagram.com/uttarakhandlpu/" target="_blank" class="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-3 px-6 rounded-full inline-flex items-center transition duration-300">
+                        <i class="fab fa-instagram mr-2"></i>
+                        @uttarakhandlpu
+                    </a>
+                </div>
+                
+                <!-- WhatsApp Community -->
+                <div class="bg-gray-700 rounded-xl p-8 text-center">
+                    <i class="fab fa-whatsapp text-4xl text-green-500 mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-4">Join WhatsApp Community</h3>
+                    <p class="text-gray-300 mb-6">Get updates, travel tips, and connect with fellow Uttarakhand enthusiasts.</p>
+                    <a href="#" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-full inline-flex items-center transition duration-300">
+                        <i class="fab fa-whatsapp mr-2"></i>
+                        Join Community
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Additional Social Links -->
+            <!-- <div class="mt-12 text-center">
+                <h3 class="text-2xl font-bold mb-6">Follow Us On</h3>
+                <div class="flex justify-center space-x-6">
+                    <a href="#" class="bg-blue-600 hover:bg-blue-700 w-12 h-12 rounded-full flex items-center justify-center">
+                        <i class="fab fa-facebook-f text-white"></i>
+                    </a>
+                    <a href="#" class="bg-blue-400 hover:bg-blue-500 w-12 h-12 rounded-full flex items-center justify-center">
+                        <i class="fab fa-twitter text-white"></i>
+                    </a>
+                    <a href="#" class="bg-red-600 hover:bg-red-700 w-12 h-12 rounded-full flex items-center justify-center">
+                        <i class="fab fa-youtube text-white"></i>
+                    </a>
+                    <a href="#" class="bg-blue-700 hover:bg-blue-800 w-12 h-12 rounded-full flex items-center justify-center">
+                        <i class="fab fa-linkedin-in text-white"></i>
+                    </a>
+                </div>
+            </div> -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Uttarakhand Tourism</h3>
+                    <p class="text-gray-300 mb-4">Discover the divine beauty and rich cultural heritage of the Land of Gods.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-white">
+                            <i class="fab fa-instagram text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white">
+                            <i class="fab fa-facebook text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white">
+                            <i class="fab fa-twitter text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-300 hover:text-white">Home</a></li>
+                        <li><a href="#devbhoomi" class="text-gray-300 hover:text-white">Dev Bhoomi</a></li>
+                        <li><a href="#dhams" class="text-gray-300 hover:text-white">Char Dham</a></li>
+                        <li><a href="#attractions" class="text-gray-300 hover:text-white">Attractions</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Explore</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#regions" class="text-gray-300 hover:text-white">Regions</a></li>
+                        <li><a href="#history" class="text-gray-300 hover:text-white">History</a></li>
+                        <li><a href="#connect" class="text-gray-300 hover:text-white">Connect</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Travel Guide</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact Info</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
+                            <span>Uttarakhand Tourism Development Board, Dehradun</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-2"></i>
+                            <span>+91-135-274-1600</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2"></i>
+                            <span>info@uttarakhandtourism.gov.in</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 Uttarakhand Tourism. All rights reserved. | Developed for One India LPU Showcase</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // Add animation to timeline items on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe timeline items
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            item.style.opacity = 0;
+            item.style.transform = 'translateY(20px)';
+            item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(item);
+        });
+    </script>
+</body>
+</html>
