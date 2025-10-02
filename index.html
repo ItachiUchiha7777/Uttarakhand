@@ -14,7 +14,7 @@
         }
         .hero-bg {
             background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                        url('https://www.peakadventuretour.com/assets/imgs/uttarakhand-tourism-01.webp');
+                        url('https://i.ibb.co/BHybFb1L/uttarakhand-tourism-01.webp');
             background-size: cover;
             background-position: center;
         }
@@ -46,17 +46,22 @@
             height: 300px;
             position: relative;
             overflow: hidden;
+            border-radius: 12px;
         }
         .region-overlay {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
             color: white;
             padding: 1.5rem;
             transform: translateY(100%);
-            transition: transform 0.3s ease;
+            transition: transform 0.4s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
         }
         .region-card:hover .region-overlay {
             transform: translateY(0);
@@ -128,6 +133,35 @@
                 left: 0%;
             }
         }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #10b981;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #10b981, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translate(0, 0px); }
+            50% { transform: translate(0, 15px); }
+            100% { transform: translate(0, -0px); }
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -139,13 +173,13 @@
                 <h1 class="text-xl font-bold text-gray-800">Uttarakhand - Dev Bhoomi</h1>
             </div>
             <nav class="hidden md:flex space-x-8">
-                <a href="#home" class="text-gray-700 hover:text-green-600 font-medium">Home</a>
-                <a href="#devbhoomi" class="text-gray-700 hover:text-green-600 font-medium">Dev Bhoomi</a>
-                <a href="#dhams" class="text-gray-700 hover:text-green-600 font-medium">Char Dham</a>
-                <a href="#attractions" class="text-gray-700 hover:text-green-600 font-medium">Attractions</a>
-                <a href="#regions" class="text-gray-700 hover:text-green-600 font-medium">Regions</a>
-                <a href="#history" class="text-gray-700 hover:text-green-600 font-medium">History</a>
-                <a href="#connect" class="text-gray-700 hover:text-green-600 font-medium">Connect</a>
+                <a href="#home" class="text-gray-700 hover:text-green-600 font-medium nav-link">Home</a>
+                <a href="#devbhoomi" class="text-gray-700 hover:text-green-600 font-medium nav-link">Dev Bhoomi</a>
+                <a href="#dhams" class="text-gray-700 hover:text-green-600 font-medium nav-link">Char Dham</a>
+                <a href="#attractions" class="text-gray-700 hover:text-green-600 font-medium nav-link">Attractions</a>
+                <a href="#regions" class="text-gray-700 hover:text-green-600 font-medium nav-link">Regions</a>
+                <a href="#history" class="text-gray-700 hover:text-green-600 font-medium nav-link">History</a>
+                <a href="#connect" class="text-gray-700 hover:text-green-600 font-medium nav-link">Connect</a>
             </nav>
             <div class="md:hidden">
                 <button id="menu-toggle" class="text-gray-700 focus:outline-none">
@@ -170,14 +204,19 @@
         <div class="container mx-auto px-4 text-center">
             <h1 class="text-4xl md:text-6xl font-bold mb-4 font-serif">Uttarakhand - Dev Bhoomi</h1>
             <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">The Land of Gods, where spirituality meets nature's grandeur</p>
-            <a href="#devbhoomi" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full inline-block transition duration-300">Discover Dev Bhoomi</a>
+            <a href="#devbhoomi" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full inline-block transition duration-300 transform hover:scale-105">Discover Dev Bhoomi</a>
+        </div>
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 floating">
+            <a href="#devbhoomi" class="text-white text-2xl">
+                <i class="fas fa-chevron-down"></i>
+            </a>
         </div>
     </section>
 
     <!-- Dev Bhoomi Story Section -->
     <section id="devbhoomi" class="py-16 bg-white">
-    <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center text-gray-800 section-title">Why Uttarakhand is Called Dev Bhoomi</h2>
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-800 section-title">Why Uttarakhand is Called Dev Bhoomi</h2>
             
             <div class="max-w-4xl mx-auto bg-gradient-to-r from-green-50 to-blue-50 rounded-xl shadow-lg overflow-hidden my-8">
                 <div class="md:flex">
@@ -276,7 +315,7 @@
             </div>
             
             <!-- Ganga Descent Story -->
-            <div class="mt-12 bg-white rounded-xl shadow-lg overflow-hidden max-w-4xl mx-auto">
+            <div class="mt-12 bg-white rounded-xl shadow-lg overflow-hidden max-w-4xl mx-auto card-hover">
                 <div class="md:flex">
                     <div class="md:w-1/2 p-8">
                         <h3 class="text-2xl font-bold text-gray-800 mb-4">The Descent of Ganga: From Vishnu's Feet to Shiva's Locks</h3>
@@ -370,7 +409,7 @@
                 
                 <!-- Shankaracharya Samadhi -->
                 <div class="bg-white rounded-lg overflow-hidden shadow-lg card-hover">
-                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRWyrfZ2xP-ATZAE2gjV6TSQl1UGHQt7vtLw&s');"></div>
+                    <div class="h-64 bg-cover bg-center" style="background-image: url('https://voiceofindia.me/wp-content/uploads/2024/03/adi-shankaracharya.png?w=750&h=452');"></div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-gray-800 mb-2">Shankaracharya Samadhi, Kedarnath</h3>
                         <p class="text-gray-600 mb-4">The final resting place of Adi Shankaracharya, the great Hindu philosopher who revived Hinduism.</p>
@@ -401,58 +440,63 @@
         </div>
     </section>
 
-    <!-- Regions Section -->
-    <section id="regions" class="py-16 bg-green-50">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-gray-800 section-title">Regions of Uttarakhand</h2>
-            <p class="text-gray-600 text-center max-w-3xl mx-auto mb-12">Uttarakhand is divided into two main cultural regions, each with its unique traditions and landscapes.</p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Garhwal -->
-                <div class="region-card rounded-lg overflow-hidden shadow-lg" style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
-                    <div class="region-overlay">
-                        <h3 class="text-2xl font-bold mb-2">Garhwal Region</h3>
-                        <p class="mb-2">The western part of Uttarakhand, known for its majestic mountains, holy rivers, and spiritual significance.</p>
-                        <ul class="list-disc list-inside">
-                            <li>Home to Char Dham pilgrimage sites</li>
-                            <li>Famous hill stations: Mussoorie, Dhanaulti</li>
-                            <li>Adventure sports: Trekking, skiing, river rafting</li>
-                            <li>Major cities: Dehradun, Haridwar, Rishikesh</li>
-                            <li>Districts: Chamoli, Dehradun, Haridwar, Pauri, Rudraprayag, Tehri, Uttarkashi</li>
-                        </ul>
-                    </div>
-                    <div class="absolute top-0 left-0 p-6">
-                        <h3 class="text-2xl font-bold text-white">Garhwal</h3>
-                    </div>
-                </div>
-                
-                <!-- Kumaon -->
-                <div class="region-card rounded-lg overflow-hidden shadow-lg" style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
-                    <div class="region-overlay">
-                        <h3 class="text-2xl font-bold mb-2">Kumaon Region</h3>
-                        <p class="mb-2">The eastern part of Uttarakhand, famous for its scenic beauty, lakes, and rich cultural heritage.</p>
-                        <ul class="list-disc list-inside">
-                            <li>Famous for Nainital, Almora, Ranikhet</li>
-                            <li>Beautiful lakes: Naini, Bhimtal, Sattal</li>
-                            <li>Jim Corbett National Park - India's first national park</li>
-                            <li>Unique Kumaoni cuisine and festivals</li>
-                            <li>Districts: Almora, Bageshwar, Champawat, Nainital, Pithoragarh, Udham Singh Nagar</li>
-                        </ul>
-                    </div>
-                    <div class="absolute top-0 left-0 p-6">
-                        <h3 class="text-2xl font-bold text-white">Kumaon</h3>
-                    </div>
+   <!-- Regions Section -->
+<section id="regions" class="py-16 bg-green-50">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center text-gray-800 section-title">Regions of Uttarakhand</h2>
+        <p class="text-gray-600 text-center max-w-3xl mx-auto mb-12">Uttarakhand is divided into two main cultural regions, each with its unique traditions and landscapes.</p>
+        
+        <!-- Garhwal Region - Content Left, Image Right -->
+        <div class="flex flex-col lg:flex-row items-center mb-16 bg-white rounded-xl shadow-lg overflow-hidden">
+            <!-- Content Section -->
+            <div class="lg:w-1/2 p-8 lg:p-12">
+                <h3 class="text-3xl font-bold text-gray-800 mb-4">Garhwal Region</h3>
+                <p class="text-gray-600 mb-6 text-lg">The western part of Uttarakhand, known for its majestic mountains, holy rivers, and spiritual significance.</p>
+                <ul class="list-disc list-inside text-gray-700 space-y-2">
+                    <li>Home to Char Dham pilgrimage sites</li>
+                    <li>Famous hill stations: Mussoorie, Dhanaulti</li>
+                    <li>Adventure sports: Trekking, skiing, river rafting</li>
+                    <li>Major cities: Dehradun, Haridwar, Rishikesh</li>
+                    <li>Districts: Chamoli, Dehradun, Haridwar, Pauri, Rudraprayag, Tehri, Uttarkashi</li>
+                </ul>
+                <div class="mt-6">
+                    <span class="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Spiritual Hub</span>
+                    <span class="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium ml-2">Adventure Destination</span>
                 </div>
             </div>
+            <!-- Image Section -->
+            <div class="lg:w-1/2 h-80 lg:h-96 bg-cover bg-center" style="background-image: url('https://c1.wallpaperflare.com/preview/385/921/113/srinagar-garhwal-india-city.jpg');"></div>
         </div>
-    </section>
 
+        <!-- Kumaon Region - Content Right, Image Left -->
+        <div class="flex flex-col lg:flex-row-reverse items-center bg-white rounded-xl shadow-lg overflow-hidden">
+            <!-- Content Section -->
+            <div class="lg:w-1/2 p-8 lg:p-12">
+                <h3 class="text-3xl font-bold text-gray-800 mb-4">Kumaon Region</h3>
+                <p class="text-gray-600 mb-6 text-lg">The eastern part of Uttarakhand, famous for its scenic beauty, lakes, and rich cultural heritage.</p>
+                <ul class="list-disc list-inside text-gray-700 space-y-2">
+                    <li>Famous for Nainital, Almora, Ranikhet</li>
+                    <li>Beautiful lakes: Naini, Bhimtal, Sattal</li>
+                    <li>Jim Corbett National Park - India's first national park</li>
+                    <li>Unique Kumaoni cuisine and festivals</li>
+                    <li>Districts: Almora, Bageshwar, Champawat, Nainital, Pithoragarh, Udham Singh Nagar</li>
+                </ul>
+                <div class="mt-6">
+                    <span class="inline-block bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium">Lake District</span>
+                    <span class="inline-block bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium ml-2">Cultural Heritage</span>
+                </div>
+            </div>
+            <!-- Image Section -->
+            <div class="lg:w-1/2 h-80 lg:h-96 bg-cover bg-center" style="background-image: url('https://www.captureatrip.com/_next/image?url=https%3A%2F%2Fd1zvcmhypeawxj.cloudfront.net%2Flocation%2FUttarakhand%2Fblogs%2Fplaces-to-visit-in-kumaon-cab158402c-mlebs9-webp-d22e1f2663-1752059420652.webp&w=3840&q=50');"></div>
+        </div>
+    </div>
+</section>
     <!-- History Section -->
     <section id="history" class="py-16 bg-white">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold text-center text-gray-800 section-title">History of Uttarakhand</h2>
             
-            <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden mb-12">
+            <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden mb-12 card-hover">
                 <div class="md:flex">
                     <div class="md:w-1/2 p-8">
                         <h3 class="text-2xl font-bold text-gray-800 mb-4">Formation of Uttarakhand</h3>
@@ -539,46 +583,27 @@
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 <!-- Instagram Section -->
-                <div class="bg-gray-700 rounded-xl p-8 text-center">
+                <div class="bg-gray-700 rounded-xl p-8 text-center card-hover">
                     <i class="fab fa-instagram text-4xl text-pink-500 mb-4"></i>
                     <h3 class="text-2xl font-bold mb-4">Follow on Instagram</h3>
                     <p class="text-gray-300 mb-6">Discover stunning visuals of Uttarakhand's landscapes, culture, and festivals.</p>
-                    <a href="https://www.instagram.com/uttarakhandlpu/" target="_blank" class="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-3 px-6 rounded-full inline-flex items-center transition duration-300">
+                    <a href="https://www.instagram.com/uttarakhandlpu/" target="_blank" class="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-3 px-6 rounded-full inline-flex items-center transition duration-300 transform hover:scale-105">
                         <i class="fab fa-instagram mr-2"></i>
                         @uttarakhandlpu
                     </a>
                 </div>
                 
                 <!-- WhatsApp Community -->
-                <div class="bg-gray-700 rounded-xl p-8 text-center">
+                <div class="bg-gray-700 rounded-xl p-8 text-center card-hover">
                     <i class="fab fa-whatsapp text-4xl text-green-500 mb-4"></i>
                     <h3 class="text-2xl font-bold mb-4">Join WhatsApp Community</h3>
                     <p class="text-gray-300 mb-6">Get updates, travel tips, and connect with fellow Uttarakhand enthusiasts.</p>
-                    <a href="#" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-full inline-flex items-center transition duration-300">
+                    <a href="https://chat.whatsapp.com/GT6xqkIcgki7jbjPhiFG1m" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-full inline-flex items-center transition duration-300 transform hover:scale-105">
                         <i class="fab fa-whatsapp mr-2"></i>
                         Join Community
                     </a>
                 </div>
             </div>
-            
-            <!-- Additional Social Links -->
-            <!-- <div class="mt-12 text-center">
-                <h3 class="text-2xl font-bold mb-6">Follow Us On</h3>
-                <div class="flex justify-center space-x-6">
-                    <a href="#" class="bg-blue-600 hover:bg-blue-700 w-12 h-12 rounded-full flex items-center justify-center">
-                        <i class="fab fa-facebook-f text-white"></i>
-                    </a>
-                    <a href="#" class="bg-blue-400 hover:bg-blue-500 w-12 h-12 rounded-full flex items-center justify-center">
-                        <i class="fab fa-twitter text-white"></i>
-                    </a>
-                    <a href="#" class="bg-red-600 hover:bg-red-700 w-12 h-12 rounded-full flex items-center justify-center">
-                        <i class="fab fa-youtube text-white"></i>
-                    </a>
-                    <a href="#" class="bg-blue-700 hover:bg-blue-800 w-12 h-12 rounded-full flex items-center justify-center">
-                        <i class="fab fa-linkedin-in text-white"></i>
-                    </a>
-                </div>
-            </div> -->
         </div>
     </section>
 
